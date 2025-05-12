@@ -1,0 +1,28 @@
+# Navigate to \Your_path_to\rmi-data-analysis directory
+
+
+# Step 1: Open three seperate terminals
+
+
+# In terminals 1:
+# Rebuild the project to ensure all changes are applied:
+mvn clean compile
+# Start RMI Registry:
+start rmiregistry
+
+
+# In terminal 2
+# Start the server
+mvn exec:java -D "exec.mainClass=server.ServerLauncher"
+
+
+# Interminal 2 
+# Start the client:
+mvn exec:java -D "exec.mainClass=client.ClientLauncher"
+
+
+
+# Optoinal
+# Reset Command (If Needed)
+taskkill /f /im java.exe /t
+taskkill /f /im rmiregistry.exe /t
