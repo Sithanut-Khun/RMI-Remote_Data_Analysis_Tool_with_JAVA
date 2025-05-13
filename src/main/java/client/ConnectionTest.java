@@ -7,7 +7,7 @@ import java.rmi.registry.Registry;
 public class ConnectionTest {
     public static void main(String[] args) {
         try {
-            Registry registry = LocateRegistry.getRegistry("localhost", 1099);
+            Registry registry = LocateRegistry.getRegistry("localhost", 2099);
             DataService service = (DataService) registry.lookup("DataService");
             System.out.println("Test successful! Server says: " + service.testConnection());
         } catch (Exception e) {

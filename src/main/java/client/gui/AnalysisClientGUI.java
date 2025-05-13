@@ -16,33 +16,33 @@ public class AnalysisClientGUI extends JFrame {
     private CustomeChartPanel chartPanel;
 
     public AnalysisClientGUI() {
-        //initializeRMI();
+        initializeRMI();
         setupUI();
     }
 
-    // private void initializeRMI() {
+    private void initializeRMI() {
 
-    //     int[] portsToTry = {1099, 2099, 3099, 4099};
-    //     boolean connected = false;
+        int[] portsToTry = {1099, 2099, 3099, 4099};
+        boolean connected = false;
 
-    //     for (int port : portsToTry) {
-    //         try {
-    //             Registry registry = LocateRegistry.getRegistry("localhost", port);
-    //             dataService = (DataService) registry.lookup("DataService");
-    //             System.out.println("Connected to RMI server on port " + port + ": " + dataService.testConnection());
-    //             connected = true;
-    //             break;
-    //         } catch (Exception e) {
-    //             System.out.println("Failed to connect on port " + port + ": " + e.getMessage());
-    //         }
-    //     }
+        for (int port : portsToTry) {
+            try {
+                Registry registry = LocateRegistry.getRegistry("localhost", port);
+                dataService = (DataService) registry.lookup("DataService");
+                System.out.println("Connected to RMI server on port " + port + ": " + dataService.testConnection());
+                connected = true;
+                break;
+            } catch (Exception e) {
+                System.out.println("Failed to connect on port " + port + ": " + e.getMessage());
+            }
+        }
 
-    //     if (!connected) {
-    //         JOptionPane.showMessageDialog(this, "Error connecting to server on all ports.",
-    //                 "Connection Error", JOptionPane.ERROR_MESSAGE);
-    //         System.exit(1);
-    //     }
-    // }
+        if (!connected) {
+            JOptionPane.showMessageDialog(this, "Error connecting to server on all ports.",
+                    "Connection Error", JOptionPane.ERROR_MESSAGE);
+            System.exit(1);
+        }
+    }
 
     private void setupUI() {
         setTitle("Remote Data Analysis Tool");
