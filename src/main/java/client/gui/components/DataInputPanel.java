@@ -62,19 +62,61 @@ public class DataInputPanel extends JPanel {
 
     private void performAnalysis(ActionEvent e) {
         try {
-            List<Double> data = new ArrayList<>();
-
             if (csvTable.getRowCount() == 0) {
                 JOptionPane.showMessageDialog(this, "Please load a CSV file to analyze",
                         "Input Error", JOptionPane.ERROR_MESSAGE);
                 return;
             }
 
-            // Combine data from CSV table
+            // Get column names
+            String[] columnNames = new String[csvTable.getColumnCount()];
+            for (int i = 0; i < csvTable.getColumnCount(); i++) {
+                columnNames[i] = csvTable.getColumnName(i);
+            }
+
+            // Show a dialog to select columns
+            JCheckBox[] checkBoxes = new JCheckBox[columnNames.length];
+            JPanel panel = new JPanel(new GridLayout(0, 1));
+            for (int i = 0; i < columnNames.length; i++) {
+                checkBoxes[i] = new JCheckBox(columnNames[i]);
+                panel.add(checkBoxes[i]);
+            }
+            JCheckBox selectAllCheckBox = new JCheckBox("Select All");
+            selectAllCheckBox.addActionListener(event -> {
+                boolean isSelected = selectAllCheckBox.isSelected();
+                for (JCheckBox checkBox : checkBoxes) {
+                    checkBox.setSelected(isSelected);
+                }
+            });
+            panel.add(selectAllCheckBox);
+
+            int result = JOptionPane.showConfirmDialog(this, panel, "Select Columns to Analyze",
+                    JOptionPane.OK_CANCEL_OPTION, JOptionPane.PLAIN_MESSAGE);
+
+            if (result != JOptionPane.OK_OPTION) {
+                return;
+            }
+
+            // Collect selected columns
+            List<Integer> selectedColumns = new ArrayList<>();
+            for (int i = 0; i < checkBoxes.length; i++) {
+                if (checkBoxes[i].isSelected()) {
+                    selectedColumns.add(i);
+                }
+            }
+
+            if (selectedColumns.isEmpty()) {
+                JOptionPane.showMessageDialog(this, "Please select at least one column to analyze",
+                        "Input Error", JOptionPane.ERROR_MESSAGE);
+                return;
+            }
+
+            // Combine data from selected columns
+            List<Double> data = new ArrayList<>();
             for (int i = 0; i < csvTable.getRowCount(); i++) {
-                for (int j = 0; j < csvTable.getColumnCount(); j++) {
+                for (int colIndex : selectedColumns) {
                     try {
-                        data.add(Double.parseDouble(csvTable.getValueAt(i, j).toString()));
+                        data.add(Double.parseDouble(csvTable.getValueAt(i, colIndex).toString()));
                     } catch (NumberFormatException ex) {
                         // Ignore invalid numbers in the table
                     }

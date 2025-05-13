@@ -16,7 +16,7 @@ public class AnalysisClientGUI extends JFrame {
     private CustomeChartPanel chartPanel;
 
     public AnalysisClientGUI() {
-        initializeRMI();
+    //initializeRMI();
         setupUI();
     }
 
