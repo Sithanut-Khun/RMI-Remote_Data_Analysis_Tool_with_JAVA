@@ -1,7 +1,5 @@
-server\SimpleServer.class
 client\gui\listeners\AnalyzeButtonListener.class
 client\ClientLauncher.class
-shared\DataService_test.class
 server\DataServiceImpl.class
 shared\DataService.class
 client\ConnectionTest.class
@@ -11,5 +9,4 @@ server\ServerLauncher.class
 client\gui\components\ResultsPanel.class
 client\gui\components\CustomeChartPanel.class
 client\gui\components\DataInputPanel$AnalysisListener.class
-client\SimpleClient.class
 client\gui\AnalysisClientGUI.class

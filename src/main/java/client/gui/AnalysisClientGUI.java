@@ -79,17 +79,21 @@ public class AnalysisClientGUI extends JFrame {
         // Add components to main panel
         mainPanel.add(dataInputPanel, BorderLayout.NORTH);
         mainPanel.add(resultsPanel, BorderLayout.CENTER);
-        mainPanel.add(chartPanel, BorderLayout.SOUTH);
+        //mainPanel.add(chartPanel, BorderLayout.SOUTH);
         
         // Set up communication between panels
+        // dataInputPanel.setAnalysisListener((results, numericData) -> {
+        // resultsPanel.displayResults(results, null);
+        // chartPanel.updateChart(numericData, results);
         dataInputPanel.setAnalysisListener((results, numericData) -> {
-        resultsPanel.displayResults(results);
+    // If you have a columnTypes map, pass it here. Otherwise, use an empty map.
+        Map<String, String> columnTypes = new HashMap<>(); // Replace with actual columnTypes if available
+        resultsPanel.displayResults(results, columnTypes);
         chartPanel.updateChart(numericData, results);
-});
+        });
 
-
-           add(mainPanel);
-    }
+    add(mainPanel);
+}
 
     public static void main(String[] args) {
         SwingUtilities.invokeLater(() -> {

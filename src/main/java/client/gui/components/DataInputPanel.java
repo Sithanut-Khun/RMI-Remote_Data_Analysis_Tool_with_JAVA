@@ -164,6 +164,9 @@ public class DataInputPanel extends JPanel {
             csvData.add(rowData);
         }
 
+
+        
+
         try {
             // Send to server for analysis
             Map<String, Map<String, String>> results = dataService.analyzeCSV(selectedColumns, csvData);
@@ -200,7 +203,7 @@ public class DataInputPanel extends JPanel {
         }
 }
 
-
+    
 
     private void loadFileData(ActionEvent e) {
         JFileChooser fileChooser = new JFileChooser();
@@ -221,47 +224,6 @@ public class DataInputPanel extends JPanel {
         }
     }
 
-
-
-    // private void loadFileData(ActionEvent e) {
-    //     JFileChooser fileChooser = new JFileChooser();
-    //     fileChooser.setFileSelectionMode(JFileChooser.FILES_ONLY);
-    //     fileChooser.setFileFilter(new javax.swing.filechooser.FileNameExtensionFilter("CSV Files", "csv"));
-
-    //     int result = fileChooser.showOpenDialog(this);
-    //     if (result == JFileChooser.APPROVE_OPTION) {
-    //         File selectedFile = fileChooser.getSelectedFile();
-    //         loadCSVFile(selectedFile);
-    //     }
-    // }
-
-    // private void loadCSVFile(File file) {
-    //     DefaultTableModel model = new DefaultTableModel();
-    //     try (BufferedReader reader = new BufferedReader(new FileReader(file))) {
-    //         String headerLine = reader.readLine();
-    //         if (headerLine == null) throw new IllegalArgumentException("Empty CSV file");
-
-    //         String[] headers = headerLine.split(",");
-    //         for (int i = 0; i < headers.length; i++) {
-    //             headers[i] = headers[i].replaceAll("[^a-zA-Z0-9 ]", "").trim();
-    //         }
-    //         model.setColumnIdentifiers(headers);
-
-    //         String line;
-    //         while ((line = reader.readLine()) != null) {
-    //             model.addRow(line.split(","));
-    //         }
-
-    //         csvTable.setModel(model);
-    //         analyzeButton.setEnabled(true);
-
-    //     } catch (Exception ex) {
-    //         JOptionPane.showMessageDialog(this,
-    //                 "Error loading file: " + ex.getMessage(),
-    //                 "Error", JOptionPane.ERROR_MESSAGE);
-    //         ex.printStackTrace();
-    //     }
-    // }
 
 
     private void loadCSVFile(File file) {
