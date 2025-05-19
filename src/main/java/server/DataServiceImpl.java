@@ -4,6 +4,10 @@ import shared.DataService;
 import java.rmi.RemoteException;
 import java.rmi.server.UnicastRemoteObject;
 import java.util.*;
+import java.util.stream.Collectors;
+
+
+import javax.swing.JTable;
 
 
 public class DataServiceImpl extends UnicastRemoteObject implements DataService {
@@ -12,98 +16,76 @@ public class DataServiceImpl extends UnicastRemoteObject implements DataService 
         super();
     }
 
-    @Override
-    public Map<String, Double> analyzeData(List<Double> data) throws RemoteException {
-        Map<String, Double> results = new HashMap<>();
-        
-        if (data == null || data.isEmpty()) {
-            return results;
-        }
-        
-        // Basic statistics
-        double sum = data.stream().mapToDouble(Double::doubleValue).sum();
-        double mean = sum / data.size();
-        double min = Collections.min(data);
-        double max = Collections.max(data);
-        
-        // Standard deviation
-        double variance = data.stream()
-            .mapToDouble(x -> Math.pow(x - mean, 2))
-            .average()
-            .orElse(0.0);
-        double stdDev = Math.sqrt(variance);
-        
-        results.put("count", (double) data.size());
-        results.put("sum", sum);
-        results.put("mean", mean);
-        results.put("min", min);
-        results.put("max", max);
-        results.put("stdDev", stdDev);
-        
-        return results;
-    }
 
     @Override
-    public Map<String, Object> analyzeCSV(String filePath) throws RemoteException {
-        Map<String, Object> results = new HashMap<>();
-        // Implementation for CSV analysis would go here
-        // This could include reading the file, parsing columns, etc.
-        try (Scanner scanner = new Scanner(new java.io.File(filePath))) {
-            List<Double> data = new ArrayList<>();
-            while (scanner.hasNextLine()) {
-            String line = scanner.nextLine();
-            try {
-                data.add(Double.parseDouble(line.trim()));
-            } catch (NumberFormatException e) {
-                // Skip invalid lines
+    public Map<String, Map<String, String>> analyzeCSV(List<Integer> selectedColumns, List<List<String>> csvData)
+        throws RemoteException {
+
+            Map<String, Map<String, String>> result = new LinkedHashMap<>();
+
+            if (csvData == null || csvData.isEmpty()) {
+                return result;
             }
+
+            // Transpose column-wise data
+            for (Integer colIndex : selectedColumns) {
+                List<String> columnData = new ArrayList<>();
+                for (List<String> row : csvData) {
+                    if (colIndex < row.size()) {
+                        columnData.add(row.get(colIndex));
+                    } else {
+                        columnData.add(null);
+                    }
+                }
+
+                boolean isNumeric = columnData.stream().allMatch(s -> {
+                    if (s == null || s.trim().isEmpty()) return true;
+                    try {
+                        Double.parseDouble(s);
+                        return true;
+                    } catch (NumberFormatException e) {
+                        return false;
+                    }
+                });
+
+                Map<String, String> columnStats = new LinkedHashMap<>();
+
+                int nullCount = (int) columnData.stream().filter(s -> s == null || s.trim().isEmpty()).count();
+                columnStats.put("nulls", String.valueOf(nullCount));
+                columnStats.put("count", String.valueOf(columnData.size() - nullCount));
+
+                if (isNumeric) {
+                    List<Double> numericValues = columnData.stream()
+                    .filter(s -> s != null && !s.trim().isEmpty())
+                    .map(Double::parseDouble)
+                    .collect(Collectors.toList());
+
+
+                    if (!numericValues.isEmpty()) {
+                        double sum = numericValues.stream().mapToDouble(Double::doubleValue).sum();
+                        double mean = sum / numericValues.size();
+                        double min = Collections.min(numericValues);
+                        double max = Collections.max(numericValues);
+                        double variance = numericValues.stream().mapToDouble(x -> Math.pow(x - mean, 2)).average().orElse(0.0);
+                        double stdDev = Math.sqrt(variance);
+
+                        columnStats.put("sum", String.valueOf(sum));
+                        columnStats.put("mean", String.valueOf(mean));
+                        columnStats.put("min", String.valueOf(min));
+                        columnStats.put("max", String.valueOf(max));
+                        columnStats.put("stdDev", String.valueOf(stdDev));
+                        columnStats.put("variance", String.valueOf(variance));
+                    }
+                } else {
+                    columnStats.put("type", "string");
+                }
+
+                result.put("Column " + colIndex, columnStats);
             }
-            results.put("analysis", analyzeData(data));
-        } catch (java.io.FileNotFoundException e) {
-            results.put("error", "File not found: " + filePath);
-        } catch (Exception e) {
-            results.put("error", "An error occurred while processing the file: " + e.getMessage());
-        }
-        return results;
+
+        return result;
     }
 
-    @Override
-    public Map<String, Double> timeSeriesAnalysis(Map<String, List<Double>> timeSeriesData) throws RemoteException {
-        Map<String, Double> results = new HashMap<>();
-        // Implementation for time series analysis
-        // This could include calculating trends, seasonality, etc.
-        if (timeSeriesData == null || timeSeriesData.isEmpty()) {
-            return results;
-        }
-
-        for (Map.Entry<String, List<Double>> entry : timeSeriesData.entrySet()) {
-            String seriesName = entry.getKey();
-            List<Double> data = entry.getValue();
-
-            if (data == null || data.isEmpty()) {
-            continue;
-            }
-
-            // Calculate mean for the time series
-            double sum = data.stream().mapToDouble(Double::doubleValue).sum();
-            double mean = sum / data.size();
-
-            // Calculate trend (simple linear regression slope)
-            int n = data.size();
-            double sumX = 0, sumY = 0, sumXY = 0, sumX2 = 0;
-            for (int i = 0; i < n; i++) {
-            sumX += i;
-            sumY += data.get(i);
-            sumXY += i * data.get(i);
-            sumX2 += i * i;
-            }
-            double slope = (n * sumXY - sumX * sumY) / (n * sumX2 - sumX * sumX);
-
-            results.put(seriesName + "_mean", mean);
-            results.put(seriesName + "_trend", slope);
-        }
-        return results;
-    }
 
     @Override
     public String testConnection() throws RemoteException {

@@ -26,3 +26,6 @@ mvn exec:java -D "exec.mainClass=client.ClientLauncher"
 # Reset Command (If Needed)
 taskkill /f /im java.exe /t
 taskkill /f /im rmiregistry.exe /t
+
+
+netstat -ano | findstr :1099

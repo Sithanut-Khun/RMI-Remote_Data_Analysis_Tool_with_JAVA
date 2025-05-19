@@ -5,6 +5,10 @@ import java.awt.*;
 import shared.DataService;
 import java.rmi.registry.LocateRegistry;
 import java.rmi.registry.Registry;
+import java.util.Arrays;
+import java.util.HashMap;
+import java.util.Map;
+
 import client.gui.components.DataInputPanel;
 import client.gui.components.ResultsPanel;
 import client.gui.components.CustomeChartPanel;
@@ -16,33 +20,46 @@ public class AnalysisClientGUI extends JFrame {
     private CustomeChartPanel chartPanel;
 
     public AnalysisClientGUI() {
-    //initializeRMI();
+        initializeRMI(); // Make sure to call this to establish the connection
         setupUI();
     }
 
     private void initializeRMI() {
+    final String host = "127.0.0.1"; // Force loopback
+    final int port = 1099;
+    final int retryDelay = 1000;
+    final int maxAttempts = 3;
 
-        int[] portsToTry = {1099, 2099, 3099, 4099};
-        boolean connected = false;
+    for (int attempt = 1; attempt <= maxAttempts; attempt++) {
+        try {
+            System.out.println("Attempting connection to port " + port + " (attempt " + attempt + ")");
 
-        for (int port : portsToTry) {
-            try {
-                Registry registry = LocateRegistry.getRegistry("localhost", port);
-                dataService = (DataService) registry.lookup("DataService");
-                System.out.println("Connected to RMI server on port " + port + ": " + dataService.testConnection());
-                connected = true;
-                break;
-            } catch (Exception e) {
-                System.out.println("Failed to connect on port " + port + ": " + e.getMessage());
+            Registry registry = LocateRegistry.getRegistry(host, port);
+            dataService = (DataService) registry.lookup("DataService");
+
+            String response = dataService.testConnection();
+            System.out.println("✅ Connected to RMI server on port " + port + ": " + response);
+            return;
+
+        } catch (Exception e) {
+            System.err.println("❌ Attempt " + attempt + " failed: " + e.getMessage());
+
+            if (attempt < maxAttempts) {
+                try {
+                    Thread.sleep(retryDelay);
+                } catch (InterruptedException ie) {
+                    Thread.currentThread().interrupt();
+                }
+            } else {
+                JOptionPane.showMessageDialog(this,
+                    "Failed to connect to RMI server after " + maxAttempts + " attempts.\n" +
+                    "Make sure the server and rmiregistry are running on localhost:1099.",
+                    "Connection Error", JOptionPane.ERROR_MESSAGE);
+                System.exit(1);
             }
         }
-
-        if (!connected) {
-            JOptionPane.showMessageDialog(this, "Error connecting to server on all ports.",
-                    "Connection Error", JOptionPane.ERROR_MESSAGE);
-            System.exit(1);
-        }
     }
+}
 
     private void setupUI() {
         setTitle("Remote Data Analysis Tool");
@@ -65,12 +82,13 @@ public class AnalysisClientGUI extends JFrame {
         mainPanel.add(chartPanel, BorderLayout.SOUTH);
         
         // Set up communication between panels
-        dataInputPanel.setAnalysisListener((results, data) -> {
-            resultsPanel.displayResults(results);
-            chartPanel.updateChart(data, results);
-        });
-        
-        add(mainPanel);
+        dataInputPanel.setAnalysisListener((results, numericData) -> {
+        resultsPanel.displayResults(results);
+        chartPanel.updateChart(numericData, results);
+});
+
+
+           add(mainPanel);
     }
 
     public static void main(String[] args) {

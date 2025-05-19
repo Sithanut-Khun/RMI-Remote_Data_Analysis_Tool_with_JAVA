@@ -1,31 +1,40 @@
 package server;
 
 import shared.DataService;
+
+import java.rmi.RemoteException;
 import java.rmi.registry.LocateRegistry;
 import java.rmi.registry.Registry;
+import java.rmi.server.UnicastRemoteObject;
+import java.util.concurrent.CountDownLatch;
 
 public class ServerLauncher {
-
-    private static final int[] PORTS_TO_TRY = {1099, 2099, 3099, 4099};
-
+ 
     public static void main(String[] args) {
-        for (int port : PORTS_TO_TRY) {
-            try {
-                // Create RMI registry on the current port
-                Registry registry = LocateRegistry.createRegistry(port);
+        try {
+            // Force stub to use localhost
+            System.setProperty("java.rmi.server.hostname", "127.0.0.1");
 
-                // Create service instance
-                DataService dataService = new DataServiceImpl();
+            // Get existing registry (already started via rmiregistry)
+            Registry registry = LocateRegistry.getRegistry(1099);
 
-                // Bind the service to the registry
-                registry.rebind("DataService", dataService);
+            // Create service instance and export it
+            DataService dataService = new DataServiceImpl();
 
-                System.out.println("Server is running on port " + port + " and waiting for client connections...");
-                return; // Exit the loop once the server starts successfully
-            } catch (Exception e) {
-                System.err.println("Failed to bind on port " + port + ": " + e.toString());
-            }
+            // Bind the stub to the registry
+            registry.rebind("DataService", dataService);
+            System.out.println("✔ DataService bound to registry");
+
+            System.out.println("✅ Server bound DataService to registry on port 1099 (localhost)");
+
+
+            // --- KEEP SERVER RUNNING ---
+            System.out.println("Server is running. Press Ctrl+C to stop.");
+            new java.util.concurrent.CountDownLatch(1).await();
+        } catch (Exception e) {
+            System.err.println("❌ Server exception: " + e.getMessage());
+            e.printStackTrace();
         }
-        System.err.println("Failed to start the server on all specified ports.");
     }
+   
 }

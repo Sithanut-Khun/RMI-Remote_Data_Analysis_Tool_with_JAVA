@@ -26,16 +26,21 @@ public class ResultsPanel extends JPanel {
         add(scrollPane, BorderLayout.CENTER);
     }
 
-    public void displayResults(Map<String, Double> results) {
+    public void displayResults(Map<String, Map<String, String>> results) {
         StringBuilder sb = new StringBuilder();
         
         if (results == null || results.isEmpty()) {
             sb.append("No results to display");
         } else {
-            results.forEach((key, value) -> 
-                sb.append(String.format("%-15s: %.4f%n", key, value)));
+            results.forEach((column, stats) -> {
+                sb.append("Column: ").append(column).append("\n");
+                stats.forEach((key, value) -> 
+                    sb.append(String.format("%-15s: %s%n", key, value)));
+                sb.append("\n");
+            });
         }
         
         resultsArea.setText(sb.toString());
-    }
+        }
+
 }

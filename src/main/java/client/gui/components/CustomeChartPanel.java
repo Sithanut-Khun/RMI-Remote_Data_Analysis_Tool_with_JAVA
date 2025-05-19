@@ -4,7 +4,10 @@ import org.jfree.chart.ChartFactory;
 import org.jfree.chart.ChartPanel;
 import org.jfree.chart.JFreeChart;
 import org.jfree.chart.plot.PlotOrientation;
+import org.jfree.chart.plot.PiePlot;
+import org.jfree.chart.plot.CategoryPlot;
 import org.jfree.data.category.DefaultCategoryDataset;
+import org.jfree.data.general.DefaultPieDataset;
 import javax.swing.*;
 import java.awt.*;
 import java.util.List;
@@ -13,11 +16,6 @@ import java.util.Map;
 public class CustomeChartPanel extends JPanel {
     private JFreeChart chart;
     private JComboBox<String> chartTypeComboBox;
-
-    public CustomeChartPanel(JFreeChart chart) {
-        this.chart = chart;
-        initComponents();
-    }
 
     public CustomeChartPanel() {
         initComponents();
@@ -70,10 +68,6 @@ public class CustomeChartPanel extends JPanel {
                     true, true, false
                 );
                 break;
-            case "Pie Chart":
-                // Pie chart requires a different dataset, so this is a placeholder
-                JOptionPane.showMessageDialog(this, "Pie Chart is not yet implemented.");
-                break;
         }
 
         removeAll();
@@ -82,25 +76,27 @@ public class CustomeChartPanel extends JPanel {
         repaint();
     }
 
-    public void updateChart(List<Double> data, Map<String, Double> results) {
+    
+
+    public void updateChart(List<Double> data, Map<String, Map<String, String>> results) {
         DefaultCategoryDataset dataset = new DefaultCategoryDataset();
 
         if (results != null) {
-            results.forEach((key, value) ->
-                dataset.addValue(value, "Statistics", key));
+            results.forEach((column, stats) -> {
+                if (stats.containsKey("mean")) {
+                    try {
+                        double mean = Double.parseDouble(stats.get("mean"));
+                        dataset.addValue(mean, "Statistics", column);
+                    } catch (NumberFormatException e) {
+                        // Handle invalid number formats gracefully
+                    }
+                }
+            });
         }
 
-        chart.getCategoryPlot().setDataset(dataset);
+        // Update the chart with the new dataset
+        if (chart != null) {
+            chart.getCategoryPlot().setDataset(dataset);
+        }
     }
-
-    // private DefaultCategoryDataset createDatasetFromInput() {
-    //     DefaultCategoryDataset dataset = new DefaultCategoryDataset();
-
-    //     if (dataInputPanel != null) {
-    //         Map<String, Double> inputData = dataInputPanel.; // Assuming DataInputPanel has a method getInputData()
-    //         inputData.forEach((key, value) -> dataset.addValue(value, "Statistics", key));
-    //     }
-
-    //     return dataset;
-    // }
 }
