@@ -19,7 +19,7 @@
         <dependency>
             <groupId>org.jfree</groupId>
             <artifactId>jfreechart</artifactId>
-            <version>1.5.3</version>
+            <version>1.5.4</version>
         </dependency>
         
         <!-- JCommon required by JFreeChart -->
@@ -28,6 +28,8 @@
             <artifactId>jcommon</artifactId>
             <version>1.0.24</version>
         </dependency>
+
+
     </dependencies>
 
     <build>

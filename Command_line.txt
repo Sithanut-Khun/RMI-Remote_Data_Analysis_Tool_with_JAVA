@@ -6,19 +6,22 @@
 
 # In terminals 1:
 # Rebuild the project to ensure all changes are applied:
-mvn clean compile
+- Wirte this: mvn clean compile
+
 # Start RMI Registry:
-start rmiregistry
+- Write this: cd target\classes
+- Then this: start rmiregistry 1099
 
 
 # In terminal 2
 # Start the server
-mvn exec:java -D "exec.mainClass=server.ServerLauncher"
+- Write this: mvn exec:java -D "exec.mainClass=server.ServerLauncher"
 
 
 # Interminal 2 
 # Start the client:
-mvn exec:java -D "exec.mainClass=client.ClientLauncher"
+
+-Write This: mvn exec:java -D "exec.mainClass=client.ClientLauncher"
 
 
 

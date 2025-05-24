@@ -1,12 +1,15 @@
-client\gui\listeners\AnalyzeButtonListener.class
 client\ClientLauncher.class
+util\LoggingUtil$1.class
 server\DataServiceImpl.class
 shared\DataService.class
 client\ConnectionTest.class
 client\gui\components\DataInputPanel.class
-client\gui\components\DataInputPanel$1.class
 server\ServerLauncher.class
 client\gui\components\ResultsPanel.class
+client\gui\components\CustomeChartPanel$1.class
 client\gui\components\CustomeChartPanel.class
 client\gui\components\DataInputPanel$AnalysisListener.class
+client\gui\components\ResultsPanel$1.class
+client\gui\components\DataInputPanel$ColumnSelectionDialog.class
 client\gui\AnalysisClientGUI.class
+util\LoggingUtil.class

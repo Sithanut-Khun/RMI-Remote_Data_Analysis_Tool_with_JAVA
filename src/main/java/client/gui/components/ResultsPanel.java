@@ -1,5 +1,7 @@
 package client.gui.components;
 
+import java.util.logging.Logger;
+
 import javax.swing.*;
 import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
@@ -11,6 +13,7 @@ import java.util.stream.Collectors;
 public class ResultsPanel extends JPanel {
     private JTable resultsTable;
     private JScrollPane scrollPane;
+    private static final Logger logger = Logger.getLogger(ResultsPanel.class.getName());
 
     public ResultsPanel() {
         initComponents();
@@ -37,7 +40,7 @@ public class ResultsPanel extends JPanel {
     private void setupLayout() {
         setLayout(new BorderLayout());
         setBorder(BorderFactory.createCompoundBorder(
-            BorderFactory.createTitledBorder("Analysis Results"),
+            BorderFactory.createTitledBorder("Summary Statistics"),
             BorderFactory.createEmptyBorder(5, 5, 5, 5)
         ));
         add(scrollPane, BorderLayout.CENTER);
@@ -45,6 +48,8 @@ public class ResultsPanel extends JPanel {
 
     public void displayResults(Map<String, Map<String, String>> results, 
                              Map<String, String> columnTypes) {
+
+        logger.info("Recieved results from server. Displaying results in ResultsPanel");                        
         if (results == null || results.isEmpty()) {
             showEmptyMessage();
             return;

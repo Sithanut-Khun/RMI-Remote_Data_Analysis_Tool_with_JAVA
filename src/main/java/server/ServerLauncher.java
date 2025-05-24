@@ -1,40 +1,34 @@
 package server;
 
 import shared.DataService;
+import util.LoggingUtil;
 
-import java.rmi.RemoteException;
 import java.rmi.registry.LocateRegistry;
 import java.rmi.registry.Registry;
-import java.rmi.server.UnicastRemoteObject;
 import java.util.concurrent.CountDownLatch;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 public class ServerLauncher {
- 
+    private static final Logger logger = Logger.getLogger(ServerLauncher.class.getName());
+
     public static void main(String[] args) {
+        LoggingUtil.setupLogger("server.log"); // Initialize logging
+
         try {
-            // Force stub to use localhost
             System.setProperty("java.rmi.server.hostname", "127.0.0.1");
 
-            // Get existing registry (already started via rmiregistry)
             Registry registry = LocateRegistry.getRegistry(1099);
-
-            // Create service instance and export it
             DataService dataService = new DataServiceImpl();
-
-            // Bind the stub to the registry
             registry.rebind("DataService", dataService);
-            System.out.println("✔ DataService bound to registry");
 
-            System.out.println("✅ Server bound DataService to registry on port 1099 (localhost)");
+            logger.info("Server bound DataService to registry on port 1099 (localhost)");
+            logger.info("Server is running. Press Ctrl+C to stop.");
 
+            new CountDownLatch(1).await(); // Keep server running
 
-            // --- KEEP SERVER RUNNING ---
-            System.out.println("Server is running. Press Ctrl+C to stop.");
-            new java.util.concurrent.CountDownLatch(1).await();
         } catch (Exception e) {
-            System.err.println("❌ Server exception: " + e.getMessage());
-            e.printStackTrace();
+            logger.log(Level.SEVERE, "Server exception: " + e.getMessage(), e);
         }
     }
-   
 }

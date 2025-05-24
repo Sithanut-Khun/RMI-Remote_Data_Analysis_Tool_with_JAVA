@@ -1,6 +1,8 @@
 package client;
 
 import client.gui.AnalysisClientGUI;
+import util.LoggingUtil;
+
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -8,9 +10,12 @@ public class ClientLauncher {
     private static final Logger logger = Logger.getLogger(ClientLauncher.class.getName());
 
     public static void main(String[] args) {
-        System.out.println("Starting the Analysis Client...");
+        LoggingUtil.setupLogger("client.log"); 
+
+        logger.info("Starting the Analysis Client...");
+
         Runtime.getRuntime().addShutdownHook(new Thread(() -> {
-            System.out.println("Shutting down the Analysis Client...");
+            logger.info("Shutting down the Analysis Client...");
         }));
 
         try {

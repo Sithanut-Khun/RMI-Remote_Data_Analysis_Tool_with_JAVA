@@ -9,10 +9,6 @@ import java.util.Map;
 
 public interface DataService extends Remote {
     // Basic statistical analysis
-  
-    Map<String, Map<String, String>> analyzeCSV(List<Integer> selectedColumns, List<List<String>> csvData) throws RemoteException;
+    Map<String, Map<String, String>> analyzeCSV(List<String> columnNames, List<List<String>> csvData) throws RemoteException;
     
-    
-    // Test connection
-    String testConnection() throws RemoteException;
 }
