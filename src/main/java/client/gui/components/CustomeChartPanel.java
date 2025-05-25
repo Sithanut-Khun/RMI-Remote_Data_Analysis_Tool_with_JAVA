@@ -30,10 +30,13 @@ public class CustomeChartPanel extends JPanel {
     private JComboBox<String> categoryCombo;
     private JComboBox<String> valueCombo;
     private JComboBox<String> aggregationCombo;
-    private JPanel chartContainer;
     private JComboBox<String> xAxisCombo;
     private JComboBox<String> yAxisCombo;
     private JComboBox<String> legendCombo;
+    private JCheckBox showLegendCheckbox;
+
+    private JPanel chartContainer;
+
     private static final Logger logger = Logger.getLogger(CustomeChartPanel.class.getName());
 
 
@@ -46,12 +49,13 @@ public class CustomeChartPanel extends JPanel {
     private void initComponents() {
         setLayout(new BorderLayout(10, 10));
 
-        JPanel controlPanel = new JPanel(new GridLayout(4, 4, 10, 10));
+        JPanel controlPanel = new JPanel(new GridLayout(5, 4, 10, 10));
 
         chartTypeCombo = new JComboBox<>(new String[]{"Pie Chart", "Bar Chart", "Stacked Bar Chart", "Scatter Plot"});
         categoryCombo = new JComboBox<>();
         valueCombo = new JComboBox<>();
         aggregationCombo = new JComboBox<>(new String[]{"Count", "Sum"});
+        showLegendCheckbox = new JCheckBox("Show Legend by Category", false);
         xAxisCombo = new JComboBox<>();
         yAxisCombo = new JComboBox<>();
         legendCombo = new JComboBox<>();
@@ -79,6 +83,9 @@ public class CustomeChartPanel extends JPanel {
         controlPanel.add(yAxisCombo);
         controlPanel.add(new JLabel("Legend Column:"));
         controlPanel.add(legendCombo);
+        controlPanel.add(new JLabel(""));
+        controlPanel.add(showLegendCheckbox);
+
 
         add(controlPanel, BorderLayout.NORTH);
         JPanel buttonPanel = new JPanel(new FlowLayout(FlowLayout.CENTER));
@@ -104,6 +111,7 @@ public class CustomeChartPanel extends JPanel {
         xAxisCombo.setEnabled(isScatter);
         yAxisCombo.setEnabled(isScatter);
         legendCombo.setEnabled(isScatter || isStackedBar || isBar);
+        showLegendCheckbox.setVisible(isBar);
     }
 
     public void populateColumnSelectors(List<Map<String, String>> parsedCSVRows) {
@@ -188,20 +196,19 @@ public class CustomeChartPanel extends JPanel {
     }
 
 
-
     private void renderBarChart(String categoryCol, String valueCol, String aggregation) {
-        String legendCol = (String) legendCombo.getSelectedItem(); // <-- get legend column
-        
+        String legendCol = (String) legendCombo.getSelectedItem();
+
         if ("None".equals(legendCol)) {
             legendCol = null;
         }
         if (categoryCol == null || valueCol == null || aggregation == null) return;
 
-        boolean showLegend = (legendCol != null && !legendCol.isEmpty());
-
+        boolean showLegend;
         DefaultCategoryDataset dataset = new DefaultCategoryDataset();
 
-        if (showLegend) {
+        if (legendCol != null && !legendCol.isEmpty()) {
+            showLegend = true;
             // Group by category and legend
             Map<String, Map<String, Double>> grouped = new LinkedHashMap<>();
             for (Map<String, String> row : parsedCSVRows) {
@@ -228,10 +235,21 @@ public class CustomeChartPanel extends JPanel {
                 }
             }
         } else {
-            // No legend, group by category only
-            Map<String, Double> aggregatedData = aggregateData(categoryCol, valueCol, aggregation);
-            for (Map.Entry<String, Double> entry : aggregatedData.entrySet()) {
-                dataset.addValue(entry.getValue(), valueCol, entry.getKey());
+            // No legend column selected
+            if (showLegendCheckbox.isSelected()) {
+                showLegend = true;
+                // Each category is a separate series (row key)
+                Map<String, Double> aggregatedData = aggregateData(categoryCol, valueCol, aggregation);
+                for (Map.Entry<String, Double> entry : aggregatedData.entrySet()) {
+                    dataset.addValue(entry.getValue(), entry.getKey(), ""); // rowKey=category, columnKey=""
+                }
+            } else {
+                showLegend = false;
+                // All bars are in one series (row key = valueCol)
+                Map<String, Double> aggregatedData = aggregateData(categoryCol, valueCol, aggregation);
+                for (Map.Entry<String, Double> entry : aggregatedData.entrySet()) {
+                    dataset.addValue(entry.getValue(), valueCol, entry.getKey()); // rowKey=valueCol, columnKey=category
+                }
             }
         }
 
