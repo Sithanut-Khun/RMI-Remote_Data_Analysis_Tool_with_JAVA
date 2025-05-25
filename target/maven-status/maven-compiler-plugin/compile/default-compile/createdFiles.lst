@@ -2,7 +2,6 @@ client\ClientLauncher.class
 util\LoggingUtil$1.class
 server\DataServiceImpl.class
 shared\DataService.class
-client\ConnectionTest.class
 client\gui\components\DataInputPanel.class
 server\ServerLauncher.class
 client\gui\components\ResultsPanel.class

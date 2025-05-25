@@ -1,89 +1,76 @@
-[2025-05-24 11:06:45] INFO: ? DataService bound to registry
-[2025-05-24 11:06:45] INFO: ? Server bound DataService to registry on port 1099 (localhost)
-[2025-05-24 11:06:45] INFO: Server is running. Press Ctrl+C to stop.
-[2025-05-24 11:07:18] INFO: Starting CSV analysis...
-[2025-05-24 11:07:18] INFO: Received analyze request from client
-[2025-05-24 11:07:18] INFO: Analyzing columns: [Student_ID, First_Name, Last_Name, Email, Gender, Age, Department, Attendance, Midterm_Score, Final_Score, Assignments_Avg, Quizzes_Avg, Participation_Score, Projects_Score, Total_Score, Grade, Study_Hours_per_Week, Extracurricular_Activities, Internet_Access_at_Home, Parent_Education_Level, Family_Income_Level, Stress_Level 110, Sleep_Hours_per_Night]
-[2025-05-24 11:07:18] INFO: Column Student_ID analyzed: {count=5000, nulls=0}
-[2025-05-24 11:07:18] INFO: Column First_Name analyzed: {count=5000, nulls=0}
-[2025-05-24 11:07:18] INFO: Column Last_Name analyzed: {count=5000, nulls=0}
-[2025-05-24 11:07:18] INFO: Column Email analyzed: {count=5000, nulls=0}
-[2025-05-24 11:07:18] INFO: Column Gender analyzed: {count=5000, nulls=0}
-[2025-05-24 11:07:18] INFO: Column Age analyzed: {count=5000, nulls=0}
-[2025-05-24 11:07:18] INFO: Column numeric detected: {count=5000, nulls=0, sum=105242.0000, mean=21.0484, min=18.0000, max=24.0000, type=numeric}
-[2025-05-24 11:07:18] INFO: Column numeric detected: {count=5000, nulls=0, sum=105242.0000, mean=21.0484, min=18.0000, max=24.0000, type=numeric, stdDev=1.9896, variance=3.9585, 25%=19.0000, 50%=21.0000, 75%=23.0000}
-[2025-05-24 11:07:18] INFO: Column Department analyzed: {count=5000, nulls=0}
-[2025-05-24 11:07:18] INFO: Column Attendance analyzed: {count=5000, nulls=0}
-[2025-05-24 11:07:19] INFO: Column numeric detected: {count=5000, nulls=0, sum=376780.3800, mean=75.3561, min=50.0100, max=100.0000, type=numeric}
-[2025-05-24 11:07:19] INFO: Column numeric detected: {count=5000, nulls=0, sum=376780.3800, mean=75.3561, min=50.0100, max=100.0000, type=numeric, stdDev=14.3913, variance=207.1088, 25%=62.9450, 50%=75.6700, 75%=87.8625}
-[2025-05-24 11:07:19] INFO: Column Midterm_Score analyzed: {count=5000, nulls=0}
-[2025-05-24 11:07:19] INFO: Column numeric detected: {count=5000, nulls=0, sum=353509.6200, mean=70.7019, min=40.0000, max=99.9900, type=numeric}
-[2025-05-24 11:07:19] INFO: Column numeric detected: {count=5000, nulls=0, sum=353509.6200, mean=70.7019, min=40.0000, max=99.9900, type=numeric, stdDev=17.4346, variance=303.9646, 25%=55.7075, 50%=70.8600, 75%=85.7600}
-[2025-05-24 11:07:19] INFO: Column Final_Score analyzed: {count=5000, nulls=0}
-[2025-05-24 11:07:19] INFO: Column numeric detected: {count=5000, nulls=0, sum=347732.7600, mean=69.5466, min=40.0100, max=99.9800, type=numeric}
-[2025-05-24 11:07:19] INFO: Column numeric detected: {count=5000, nulls=0, sum=347732.7600, mean=69.5466, min=40.0100, max=99.9800, type=numeric, stdDev=17.1073, variance=292.6592, 25%=54.6975, 50%=69.4850, 75%=83.9225}
-[2025-05-24 11:07:19] INFO: Column Assignments_Avg analyzed: {count=5000, nulls=0}
-[2025-05-24 11:07:19] INFO: Column numeric detected: {count=5000, nulls=0, sum=374781.6000, mean=74.9563, min=50.0000, max=99.9900, type=numeric}
-[2025-05-24 11:07:19] INFO: Column numeric detected: {count=5000, nulls=0, sum=374781.6000, mean=74.9563, min=50.0000, max=99.9900, type=numeric, stdDev=14.4028, variance=207.4420, 25%=62.3400, 50%=75.0900, 75%=87.3525}
-[2025-05-24 11:07:19] INFO: Column Quizzes_Avg analyzed: {count=5000, nulls=0}
-[2025-05-24 11:07:19] INFO: Column numeric detected: {count=5000, nulls=0, sum=374181.0700, mean=74.8362, min=50.0000, max=99.9900, type=numeric}
-[2025-05-24 11:07:19] INFO: Column numeric detected: {count=5000, nulls=0, sum=374181.0700, mean=74.8362, min=50.0000, max=99.9900, type=numeric, stdDev=14.4224, variance=208.0058, 25%=62.3575, 50%=74.9050, 75%=87.2925}
-[2025-05-24 11:07:19] INFO: Column Participation_Score analyzed: {count=5000, nulls=0}
-[2025-05-24 11:07:19] INFO: Column numeric detected: {count=5000, nulls=0, sum=24981.8600, mean=4.9964, min=0.0000, max=10.0000, type=numeric}
-[2025-05-24 11:07:19] INFO: Column numeric detected: {count=5000, nulls=0, sum=24981.8600, mean=4.9964, min=0.0000, max=10.0000, type=numeric, stdDev=2.8987, variance=8.4024, 25%=2.5075, 50%=4.9600, 75%=7.5500}
-[2025-05-24 11:07:19] INFO: Column Projects_Score analyzed: {count=5000, nulls=0}
-[2025-05-24 11:07:19] INFO: Column numeric detected: {count=5000, nulls=0, sum=373915.2500, mean=74.7831, min=50.0000, max=100.0000, type=numeric}
-[2025-05-24 11:07:19] INFO: Column numeric detected: {count=5000, nulls=0, sum=373915.2500, mean=74.7831, min=50.0000, max=100.0000, type=numeric, stdDev=14.5410, variance=211.4400, 25%=61.9700, 50%=74.5400, 75%=87.6300}
-[2025-05-24 11:07:19] INFO: Column Total_Score analyzed: {count=5000, nulls=0}
-[2025-05-24 11:07:19] INFO: Column numeric detected: {count=5000, nulls=0, sum=375109.3000, mean=75.0219, min=50.0100, max=99.9900, type=numeric}
-[2025-05-24 11:07:19] INFO: Column numeric detected: {count=5000, nulls=0, sum=375109.3000, mean=75.0219, min=50.0100, max=99.9900, type=numeric, stdDev=14.3218, variance=205.1144, 25%=62.7100, 50%=75.3450, 75%=87.0600}
-[2025-05-24 11:07:19] INFO: Column Grade analyzed: {count=5000, nulls=0}
-[2025-05-24 11:07:19] INFO: Column Study_Hours_per_Week analyzed: {count=5000, nulls=0}
-[2025-05-24 11:07:19] INFO: Column numeric detected: {count=5000, nulls=0, sum=87605.7000, mean=17.5211, min=5.0000, max=30.0000, type=numeric}
-[2025-05-24 11:07:19] INFO: Column numeric detected: {count=5000, nulls=0, sum=87605.7000, mean=17.5211, min=5.0000, max=30.0000, type=numeric, stdDev=7.1923, variance=51.7294, 25%=11.5000, 50%=17.4000, 75%=23.7000}
-[2025-05-24 11:07:19] INFO: Column Extracurricular_Activities analyzed: {count=5000, nulls=0}
-[2025-05-24 11:07:19] INFO: Column Internet_Access_at_Home analyzed: {count=5000, nulls=0}
-[2025-05-24 11:07:19] INFO: Column Parent_Education_Level analyzed: {count=5000, nulls=0}
-[2025-05-24 11:07:19] INFO: Column Family_Income_Level analyzed: {count=5000, nulls=0}
-[2025-05-24 11:07:19] INFO: Column Stress_Level 110 analyzed: {count=5000, nulls=0}
-[2025-05-24 11:07:19] INFO: Column numeric detected: {count=5000, nulls=0, sum=27536.0000, mean=5.5072, min=1.0000, max=10.0000, type=numeric}
-[2025-05-24 11:07:19] INFO: Column numeric detected: {count=5000, nulls=0, sum=27536.0000, mean=5.5072, min=1.0000, max=10.0000, type=numeric, stdDev=2.8864, variance=8.3311, 25%=3.0000, 50%=6.0000, 75%=8.0000}
-[2025-05-24 11:07:19] INFO: Column Sleep_Hours_per_Night analyzed: {count=5000, nulls=0}
-[2025-05-24 11:07:19] INFO: Column numeric detected: {count=5000, nulls=0, sum=32572.1000, mean=6.5144, min=4.0000, max=9.0000, type=numeric}
-[2025-05-24 11:07:19] INFO: Column numeric detected: {count=5000, nulls=0, sum=32572.1000, mean=6.5144, min=4.0000, max=9.0000, type=numeric, stdDev=1.4460, variance=2.0909, 25%=5.3000, 50%=6.5000, 75%=7.8000}
-[2025-05-24 11:23:41] INFO: Server bound DataService to registry on port 1099 (localhost)
-[2025-05-24 11:23:41] INFO: Server is running. Press Ctrl+C to stop.
-[2025-05-24 11:24:21] INFO: Received analyze request from client
-[2025-05-24 11:24:21] INFO: Starting CSV analysis...
-[2025-05-24 11:24:21] INFO: Analyzing columns: [Student_ID, First_Name, Last_Name, Email, Gender, Age, Department, Attendance, Midterm_Score, Final_Score, Assignments_Avg, Quizzes_Avg, Participation_Score, Projects_Score, Total_Score, Grade, Study_Hours_per_Week, Extracurricular_Activities, Internet_Access_at_Home, Parent_Education_Level, Family_Income_Level, Stress_Level 110, Sleep_Hours_per_Night]
-[2025-05-24 11:31:45] INFO: Received analyze request from client
-[2025-05-24 11:31:45] INFO: Starting CSV analysis...
-[2025-05-24 11:31:45] INFO: Analyzing columns: [Student_ID, First_Name, Last_Name, Email, Gender, Age, Department, Attendance, Midterm_Score, Final_Score, Assignments_Avg, Quizzes_Avg, Participation_Score, Projects_Score, Total_Score, Grade, Study_Hours_per_Week, Extracurricular_Activities, Internet_Access_at_Home, Parent_Education_Level, Family_Income_Level, Stress_Level 110, Sleep_Hours_per_Night]
-[2025-05-24 11:36:18] INFO: Server bound DataService to registry on port 1099 (localhost)
-[2025-05-24 11:36:18] INFO: Server is running. Press Ctrl+C to stop.
-[2025-05-24 11:39:48] INFO: Received analyze request from client
-[2025-05-24 11:39:48] INFO: Starting CSV analysis...
-[2025-05-24 11:39:48] INFO: Analyzing columns: [Student_ID, First_Name, Last_Name, Email, Gender, Age, Department, Attendance, Midterm_Score, Final_Score, Assignments_Avg, Quizzes_Avg, Participation_Score, Projects_Score, Total_Score, Grade, Study_Hours_per_Week, Extracurricular_Activities, Internet_Access_at_Home, Parent_Education_Level, Family_Income_Level, Stress_Level 110, Sleep_Hours_per_Night]
-[2025-05-24 11:39:48] INFO: Analysis complete, returning results to client.
-[2025-05-24 11:42:26] INFO: Received analyze request from client
-[2025-05-24 11:42:26] INFO: Starting CSV analysis...
-[2025-05-24 11:42:26] INFO: Analyzing columns: [Student_ID, First_Name, Last_Name, Email, Gender, Age, Department, Attendance, Midterm_Score, Final_Score, Assignments_Avg, Quizzes_Avg, Participation_Score, Projects_Score, Total_Score, Grade, Study_Hours_per_Week, Extracurricular_Activities, Internet_Access_at_Home, Parent_Education_Level, Family_Income_Level, Stress_Level 110, Sleep_Hours_per_Night]
-[2025-05-24 11:42:26] INFO: Analysis complete, returning results to client.
-[2025-05-24 12:05:56] INFO: Server bound DataService to registry on port 1099 (localhost)
-[2025-05-24 12:05:56] INFO: Server is running. Press Ctrl+C to stop.
-[2025-05-24 12:10:22] INFO: Received analyze request from client
-[2025-05-24 12:10:22] INFO: Starting CSV analysis...
-[2025-05-24 12:10:22] INFO: Analyzing columns: [Student_ID, First_Name, Last_Name, Email, Gender, Age, Department, Attendance, Midterm_Score, Final_Score, Assignments_Avg, Quizzes_Avg, Participation_Score, Projects_Score, Total_Score, Grade, Study_Hours_per_Week, Extracurricular_Activities, Internet_Access_at_Home, Parent_Education_Level, Family_Income_Level, Stress_Level 110, Sleep_Hours_per_Night]
-[2025-05-24 12:10:22] INFO: Analysis complete, returning results to client.
-[2025-05-24 12:13:37] INFO: Received analyze request from client
-[2025-05-24 12:13:37] INFO: Starting CSV analysis...
-[2025-05-24 12:13:37] INFO: Analyzing columns: [Student_ID, First_Name, Last_Name, Email, Gender, Age, Department, Attendance, Midterm_Score, Final_Score, Assignments_Avg, Quizzes_Avg, Participation_Score, Projects_Score, Total_Score, Grade, Study_Hours_per_Week, Extracurricular_Activities, Internet_Access_at_Home, Parent_Education_Level, Family_Income_Level, Stress_Level 110, Sleep_Hours_per_Night]
-[2025-05-24 12:13:37] INFO: Analysis complete, returning results to client.
-[2025-05-24 12:17:04] INFO: Received analyze request from client
-[2025-05-24 12:17:04] INFO: Starting CSV analysis...
-[2025-05-24 12:17:04] INFO: Analyzing columns: [Student_ID, First_Name, Last_Name, Email, Gender, Age, Department, Attendance, Midterm_Score, Final_Score, Assignments_Avg, Quizzes_Avg, Participation_Score, Projects_Score, Total_Score, Grade, Study_Hours_per_Week, Extracurricular_Activities, Internet_Access_at_Home, Parent_Education_Level, Family_Income_Level, Stress_Level 110, Sleep_Hours_per_Night]
-[2025-05-24 12:17:04] INFO: Analysis complete, returning results to client.
-[2025-05-24 12:19:06] INFO: Received analyze request from client
-[2025-05-24 12:19:06] INFO: Starting CSV analysis...
-[2025-05-24 12:19:06] INFO: Analyzing columns: [Student_ID, First_Name, Last_Name, Email, Gender, Age, Department, Attendance, Midterm_Score, Final_Score, Assignments_Avg, Quizzes_Avg, Participation_Score, Projects_Score, Total_Score, Grade, Study_Hours_per_Week, Extracurricular_Activities, Internet_Access_at_Home, Parent_Education_Level, Family_Income_Level, Stress_Level 110, Sleep_Hours_per_Night]
-[2025-05-24 12:19:06] INFO: Analysis complete, returning results to client.
+[2025-05-25 21:58:57] INFO: Server bound DataService to registry on port 1099 (localhost)
+[2025-05-25 21:58:57] INFO: Server is running. Press Ctrl+C to stop.
+[2025-05-25 22:00:12] INFO: Received analyze request from client
+[2025-05-25 22:00:12] INFO: Starting CSV analysis...
+[2025-05-25 22:00:12] INFO: Analyzing columns: [Student_ID, First_Name, Last_Name, Email, Gender, Age, Department, Attendance, Midterm_Score, Final_Score, Assignments_Avg, Quizzes_Avg, Participation_Score, Projects_Score, Total_Score, Grade, Study_Hours_per_Week, Extracurricular_Activities, Internet_Access_at_Home, Parent_Education_Level, Family_Income_Level, Stress_Level 110, Sleep_Hours_per_Night]
+[2025-05-25 22:00:13] INFO: Analysis complete, returning results to client.
+[2025-05-25 22:06:14] INFO: Received analyze request from client
+[2025-05-25 22:06:14] INFO: Starting CSV analysis...
+[2025-05-25 22:06:14] INFO: Analyzing columns: [Stress_Level 110]
+[2025-05-25 22:06:14] INFO: Analysis complete, returning results to client.
+[2025-05-25 22:11:26] INFO: Received analyze request from client
+[2025-05-25 22:11:26] INFO: Starting CSV analysis...
+[2025-05-25 22:11:26] INFO: Analyzing columns: [Sleep_Hours_per_Night]
+[2025-05-25 22:11:26] INFO: Analysis complete, returning results to client.
+[2025-05-25 22:15:26] INFO: Received analyze request from client
+[2025-05-25 22:15:26] INFO: Starting CSV analysis...
+[2025-05-25 22:15:26] INFO: Analyzing columns: [Student_ID, First_Name, Last_Name, Email, Gender, Age, Department, Attendance, Midterm_Score, Final_Score, Assignments_Avg, Quizzes_Avg, Participation_Score, Projects_Score, Total_Score, Grade, Study_Hours_per_Week, Extracurricular_Activities, Internet_Access_at_Home, Parent_Education_Level, Family_Income_Level, Stress_Level 110, Sleep_Hours_per_Night]
+[2025-05-25 22:15:26] INFO: Analysis complete, returning results to client.
+[2025-05-25 22:15:50] INFO: Received analyze request from client
+[2025-05-25 22:15:50] INFO: Starting CSV analysis...
+[2025-05-25 22:15:50] INFO: Analyzing columns: [Sleep_Hours_per_Night]
+[2025-05-25 22:15:50] INFO: Analysis complete, returning results to client.
+[2025-05-25 22:16:20] INFO: Received analyze request from client
+[2025-05-25 22:16:20] INFO: Starting CSV analysis...
+[2025-05-25 22:16:20] INFO: Analyzing columns: [Student_ID, First_Name, Last_Name, Email, Gender, Age, Department, Attendance, Midterm_Score, Final_Score, Assignments_Avg, Quizzes_Avg, Participation_Score, Projects_Score, Total_Score, Grade, Study_Hours_per_Week, Extracurricular_Activities, Internet_Access_at_Home, Parent_Education_Level, Family_Income_Level, Stress_Level 110, Sleep_Hours_per_Night]
+[2025-05-25 22:16:20] INFO: Analysis complete, returning results to client.
+[2025-05-25 22:17:52] INFO: Received analyze request from client
+[2025-05-25 22:17:52] INFO: Starting CSV analysis...
+[2025-05-25 22:17:52] INFO: Analyzing columns: [Student_ID, First_Name, Last_Name, Email, Gender, Age, Department, Attendance, Midterm_Score, Final_Score, Assignments_Avg, Quizzes_Avg, Participation_Score, Projects_Score, Total_Score, Grade, Study_Hours_per_Week, Extracurricular_Activities, Internet_Access_at_Home, Parent_Education_Level, Family_Income_Level, Stress_Level 110, Sleep_Hours_per_Night]
+[2025-05-25 22:17:52] INFO: Analysis complete, returning results to client.
+[2025-05-25 22:20:18] INFO: Received analyze request from client
+[2025-05-25 22:20:18] INFO: Starting CSV analysis...
+[2025-05-25 22:20:18] INFO: Analyzing columns: [Student_ID, First_Name, Last_Name, Email, Gender, Age, Department, Attendance, Midterm_Score, Final_Score, Assignments_Avg, Quizzes_Avg, Participation_Score, Projects_Score, Total_Score, Grade, Study_Hours_per_Week, Extracurricular_Activities, Internet_Access_at_Home, Parent_Education_Level, Family_Income_Level, Stress_Level 110, Sleep_Hours_per_Night]
+[2025-05-25 22:20:18] INFO: Analysis complete, returning results to client.
+[2025-05-25 22:29:39] INFO: Server bound DataService to registry on port 1099 (localhost)
+[2025-05-25 22:29:39] INFO: Server is running. Press Ctrl+C to stop.
+[2025-05-25 22:34:23] INFO: Received analyze request from client
+[2025-05-25 22:34:23] INFO: Starting CSV analysis...
+[2025-05-25 22:34:23] INFO: Analyzing columns: [Student_ID, First_Name, Last_Name, Email, Gender, Age, Department, Attendance, Midterm_Score, Final_Score, Assignments_Avg, Quizzes_Avg, Participation_Score, Projects_Score, Total_Score, Grade, Study_Hours_per_Week, Extracurricular_Activities, Internet_Access_at_Home, Parent_Education_Level, Family_Income_Level, Stress_Level 110, Sleep_Hours_per_Night]
+[2025-05-25 22:34:23] INFO: Analysis complete, returning results to client.
+[2025-05-25 22:39:13] INFO: Received analyze request from client
+[2025-05-25 22:39:13] INFO: Starting CSV analysis...
+[2025-05-25 22:39:13] INFO: Analyzing columns: [Student_ID, First_Name, Last_Name, Email, Gender, Age, Department, Attendance, Midterm_Score, Final_Score, Assignments_Avg, Quizzes_Avg, Participation_Score, Projects_Score, Total_Score, Grade, Study_Hours_per_Week, Extracurricular_Activities, Internet_Access_at_Home, Parent_Education_Level, Family_Income_Level, Stress_Level 110, Sleep_Hours_per_Night]
+[2025-05-25 22:39:13] INFO: Analysis complete, returning results to client.
+[2025-05-25 22:42:19] INFO: Received analyze request from client
+[2025-05-25 22:42:19] INFO: Starting CSV analysis...
+[2025-05-25 22:42:19] INFO: Analyzing columns: [Student_ID, First_Name, Last_Name, Email, Gender, Age, Department, Attendance, Midterm_Score, Final_Score, Assignments_Avg, Quizzes_Avg, Participation_Score, Projects_Score, Total_Score, Grade, Study_Hours_per_Week, Extracurricular_Activities, Internet_Access_at_Home, Parent_Education_Level, Family_Income_Level, Stress_Level 110, Sleep_Hours_per_Night]
+[2025-05-25 22:42:19] INFO: Analysis complete, returning results to client.
+[2025-05-25 22:52:19] INFO: Received analyze request from client
+[2025-05-25 22:52:19] INFO: Starting CSV analysis...
+[2025-05-25 22:52:19] INFO: Analyzing columns: [Student_ID, First_Name, Last_Name, Email, Gender, Age, Department, Attendance, Midterm_Score, Final_Score, Assignments_Avg, Quizzes_Avg, Participation_Score, Projects_Score, Total_Score, Grade, Study_Hours_per_Week, Extracurricular_Activities, Internet_Access_at_Home, Parent_Education_Level, Family_Income_Level, Stress_Level 110, Sleep_Hours_per_Night]
+[2025-05-25 22:52:19] INFO: Analysis complete, returning results to client.
+[2025-05-25 22:58:22] INFO: Received analyze request from client
+[2025-05-25 22:58:22] INFO: Starting CSV analysis...
+[2025-05-25 22:58:22] INFO: Analyzing columns: [Student_ID, First_Name, Last_Name, Email, Gender, Age, Department, Attendance, Midterm_Score, Final_Score, Assignments_Avg, Quizzes_Avg, Participation_Score, Projects_Score, Total_Score, Grade, Study_Hours_per_Week, Extracurricular_Activities, Internet_Access_at_Home, Parent_Education_Level, Family_Income_Level, Stress_Level 110, Sleep_Hours_per_Night]
+[2025-05-25 22:58:22] INFO: Analysis complete, returning results to client.
+[2025-05-25 23:04:47] INFO: Received analyze request from client
+[2025-05-25 23:04:47] INFO: Starting CSV analysis...
+[2025-05-25 23:04:47] INFO: Analyzing columns: [Student_ID, First_Name, Last_Name, Email, Gender, Age, Department, Attendance, Midterm_Score, Final_Score, Assignments_Avg, Quizzes_Avg, Participation_Score, Projects_Score, Total_Score, Grade, Study_Hours_per_Week, Extracurricular_Activities, Internet_Access_at_Home, Parent_Education_Level, Family_Income_Level, Stress_Level 110, Sleep_Hours_per_Night]
+[2025-05-25 23:04:47] INFO: Analysis complete, returning results to client.
+[2025-05-25 23:12:40] INFO: Received analyze request from client
+[2025-05-25 23:12:40] INFO: Starting CSV analysis...
+[2025-05-25 23:12:40] INFO: Analyzing columns: [Student_ID, First_Name, Last_Name, Email, Gender, Age, Department, Attendance, Midterm_Score, Final_Score, Assignments_Avg, Quizzes_Avg, Participation_Score, Projects_Score, Total_Score, Grade, Study_Hours_per_Week, Extracurricular_Activities, Internet_Access_at_Home, Parent_Education_Level, Family_Income_Level, Stress_Level 110, Sleep_Hours_per_Night]
+[2025-05-25 23:12:40] INFO: Analysis complete, returning results to client.
+[2025-05-25 23:25:50] INFO: Received analyze request from client
+[2025-05-25 23:25:50] INFO: Starting CSV analysis...
+[2025-05-25 23:25:50] INFO: Analyzing columns: [Student_ID, First_Name, Last_Name, Email, Gender, Age, Department, Attendance, Midterm_Score, Final_Score, Assignments_Avg, Quizzes_Avg, Participation_Score, Projects_Score, Total_Score, Grade, Study_Hours_per_Week, Extracurricular_Activities, Internet_Access_at_Home, Parent_Education_Level, Family_Income_Level, Stress_Level 110, Sleep_Hours_per_Night]
+[2025-05-25 23:25:50] INFO: Analysis complete, returning results to client.
+[2025-05-25 23:30:03] INFO: Received analyze request from client
+[2025-05-25 23:30:03] INFO: Starting CSV analysis...
+[2025-05-25 23:30:03] INFO: Analyzing columns: [Student_ID, First_Name, Last_Name, Email, Gender, Age, Department, Attendance, Midterm_Score, Final_Score, Assignments_Avg, Quizzes_Avg, Participation_Score, Projects_Score, Total_Score, Grade, Study_Hours_per_Week, Extracurricular_Activities, Internet_Access_at_Home, Parent_Education_Level, Family_Income_Level, Stress_Level 110, Sleep_Hours_per_Night]
+[2025-05-25 23:30:03] INFO: Analysis complete, returning results to client.
+[2025-05-25 23:33:05] INFO: Received analyze request from client
+[2025-05-25 23:33:05] INFO: Starting CSV analysis...
+[2025-05-25 23:33:05] INFO: Analyzing columns: [Student_ID, First_Name, Last_Name, Email, Gender, Age, Department, Attendance, Midterm_Score, Final_Score, Assignments_Avg, Quizzes_Avg, Participation_Score, Projects_Score, Total_Score, Grade, Study_Hours_per_Week, Extracurricular_Activities, Internet_Access_at_Home, Parent_Education_Level, Family_Income_Level, Stress_Level 110, Sleep_Hours_per_Night]
+[2025-05-25 23:33:05] INFO: Analysis complete, returning results to client.

@@ -34,13 +34,13 @@ public class AnalysisClientGUI extends JFrame {
 
     for (int attempt = 1; attempt <= maxAttempts; attempt++) {
         try {
-            System.out.println("Attempting connection to port " + port + " (attempt " + attempt + ")");
 
+            logger.info("Attempting connection to port " + port + " (attempt " + attempt + ")");
+            
             Registry registry = LocateRegistry.getRegistry(host, port);
             dataService = (DataService) registry.lookup("DataService");
 
-            // String response = dataService.testConnection();
-            System.out.println("Connected to RMI server on port " + port);
+            logger.info("Connected to RMI server on port " + port);
             return;
 
         } catch (Exception e) {
@@ -53,6 +53,7 @@ public class AnalysisClientGUI extends JFrame {
                     Thread.currentThread().interrupt();
                 }
             } else {
+                logger.info("Failed to connect to RMI server after " + maxAttempts + " attempts.");
                 JOptionPane.showMessageDialog(this,
                     "Failed to connect to RMI server after " + maxAttempts + " attempts.\n" +
                     "Make sure the server and rmiregistry are running on localhost:1099.",
@@ -82,7 +83,7 @@ private void setupUI() {
     // Optional: Titled borders for visual grouping
     dataInputPanel.setBorder(BorderFactory.createTitledBorder("Data Input"));
     resultsPanel.setBorder(BorderFactory.createTitledBorder("Summary Statistics"));
-    chartPanel.setBorder(BorderFactory.createTitledBorder("Visualization Chart"));
+    chartPanel.setBorder(BorderFactory.createTitledBorder("Visualization"));
     // Set background colors for better visibility
     dataInputPanel.setBackground(Color.LIGHT_GRAY);
     resultsPanel.setBackground(Color.WHITE);
@@ -98,9 +99,16 @@ private void setupUI() {
     // Add Exit button at the bottom
     JButton exitButton = new JButton("Exit");
     exitButton.addActionListener(e -> {
-        logger.info("Exiting the application.");
-        JOptionPane.showMessageDialog(this, "Exiting the application.");
-        System.exit(0);
+        int option = JOptionPane.showConfirmDialog(
+            this,
+            "Are you sure you want to exit the application?",
+            "Confirm Exit",
+            JOptionPane.YES_NO_OPTION
+        );
+        if (option == JOptionPane.YES_OPTION) {
+            logger.info("Exiting the application.");
+            System.exit(0);
+        }
     });
     JPanel buttonPanel = new JPanel();
     buttonPanel.setLayout(new FlowLayout(FlowLayout.RIGHT));

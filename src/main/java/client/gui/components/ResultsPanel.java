@@ -5,6 +5,10 @@ import java.util.logging.Logger;
 import javax.swing.*;
 import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
+import javax.swing.table.JTableHeader;
+import javax.swing.table.TableColumnModel;
+import javax.swing.table.TableColumn;
+
 import java.awt.*;
 import java.util.*;
 import java.util.List;
@@ -18,6 +22,17 @@ public class ResultsPanel extends JPanel {
     public ResultsPanel() {
         initComponents();
         setupLayout();
+    }
+
+
+    @Override
+    public Dimension getPreferredSize() {
+        int rowCount = resultsTable.getRowCount();
+        int rowHeight = resultsTable.getRowHeight();
+        int headerHeight = resultsTable.getTableHeader().getPreferredSize().height;
+        int totalHeight = rowCount * rowHeight + headerHeight + 20; // 20 for padding/borders
+        int width = super.getPreferredSize().width;
+        return new Dimension(width, totalHeight);
     }
 
     private void initComponents() {
@@ -35,6 +50,7 @@ public class ResultsPanel extends JPanel {
         resultsTable.setRowHeight(25);
         resultsTable.setFont(new Font("SansSerif", Font.PLAIN, 12));
         resultsTable.getTableHeader().setFont(new Font("SansSerif", Font.BOLD, 12));
+        resultsTable.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
     }
 
     private void setupLayout() {
@@ -69,6 +85,7 @@ public class ResultsPanel extends JPanel {
         DefaultTableModel model = createTableModel(statKeys, columnNames, results, columnTypes);
         resultsTable.setModel(model);
         configureColumnRenderers();
+        adjustColumnWidthsToHeader();
     }
 
     private DefaultTableModel createTableModel(Set<String> statKeys, 
@@ -138,4 +155,21 @@ public class ResultsPanel extends JPanel {
     public JTable getResultsTable() {
         return resultsTable;
     }
+
+
+
+    private void adjustColumnWidthsToHeader() {
+    JTableHeader tableHeader = resultsTable.getTableHeader();
+    TableColumnModel columnModel = resultsTable.getColumnModel();
+    FontMetrics headerFontMetrics = tableHeader.getFontMetrics(tableHeader.getFont());
+
+    for (int col = 0; col < resultsTable.getColumnCount(); col++) {
+        TableColumn column = columnModel.getColumn(col);
+        String headerValue = resultsTable.getColumnName(col);
+        int headerWidth = headerFontMetrics.stringWidth(headerValue) + 24; // 24px for padding
+        column.setPreferredWidth(headerWidth);
+    }
+}
+
+
 }

@@ -5,6 +5,10 @@ import java.util.logging.Logger;
 import shared.DataService;
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
+import javax.swing.table.JTableHeader;
+import javax.swing.table.TableColumnModel;
+import javax.swing.table.TableColumn;
+
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.io.BufferedReader;
@@ -24,14 +28,12 @@ public class DataInputPanel extends JPanel {
     private static final Logger logger = Logger.getLogger(DataInputPanel.class.getName());
 
     
-
     public interface AnalysisListener {
-    void onAnalysisPerformed(
-        Map<String, Map<String, String>> results,
-        List<Map<String, String>> parsedCSVRows
-    );
-}
-
+        void onAnalysisPerformed(
+            Map<String, Map<String, String>> results,
+            List<Map<String, String>> parsedCSVRows
+        );
+    }
 
 
     public DataInputPanel(DataService dataService) {
@@ -44,8 +46,9 @@ public class DataInputPanel extends JPanel {
         csvTable = new JTable(new DefaultTableModel());
         csvTable.setPreferredScrollableViewportSize(new Dimension(500, 500));
         csvTable.setFillsViewportHeight(true);
+        csvTable.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
 
-        loadButton = new JButton("Load CSV");
+        loadButton = new JButton("Load File");
         loadButton.addActionListener(this::loadFileData);
 
         analyzeButton = new JButton("Analyze");
@@ -71,9 +74,9 @@ public class DataInputPanel extends JPanel {
 
     private void performAnalysis(ActionEvent e) {
         DefaultTableModel model = (DefaultTableModel) csvTable.getModel();
-        logger.info("Sending data to server for analysis");
         if (model.getRowCount() == 0) {
             showError("No data to analyze");
+
             return;
         }
 
@@ -94,13 +97,14 @@ public class DataInputPanel extends JPanel {
         List<List<String>> csvData = prepareDataForAnalysis(model, selectedColumnIndices);
         List<Map<String, String>> parsedCSVRows = convertToRowMaps(selectedColumnNames, csvData);
         try {
+            logger.info("Sending CSV data to server for analysis");
             // Send to server with original column names
             Map<String, Map<String, String>> results = dataService.analyzeCSV(selectedColumnNames, csvData);
 
             // Trigger listener
             if (analysisListener != null) {
-             analysisListener.onAnalysisPerformed(results, parsedCSVRows);
-        }
+            analysisListener.onAnalysisPerformed(results, parsedCSVRows);
+            }
         } catch (RemoteException ex) {
             showError("Server error: " + ex.getMessage());
         } catch (Exception ex) {
@@ -168,6 +172,7 @@ public class DataInputPanel extends JPanel {
 
             csvTable.setModel(model);
             analyzeButton.setEnabled(model.getRowCount() > 0);
+            adjustColumnWidthsToHeader();
         } catch (Exception ex) {
             showError("Error loading file: " + ex.getMessage());
             logger.severe("Error loading CSV file: " + ex.getMessage());
@@ -272,6 +277,20 @@ public class DataInputPanel extends JPanel {
                 }
             }
             return selected;
+        }
+    }
+
+
+    private void adjustColumnWidthsToHeader() {
+        JTableHeader tableHeader = csvTable.getTableHeader();
+        TableColumnModel columnModel = csvTable.getColumnModel();
+        FontMetrics headerFontMetrics = tableHeader.getFontMetrics(tableHeader.getFont());
+
+        for (int col = 0; col < csvTable.getColumnCount(); col++) {
+            TableColumn column = columnModel.getColumn(col);
+            String headerValue = csvTable.getColumnName(col);
+            int headerWidth = headerFontMetrics.stringWidth(headerValue) + 24; // 24px for padding
+            column.setPreferredWidth(headerWidth);
         }
     }
 
