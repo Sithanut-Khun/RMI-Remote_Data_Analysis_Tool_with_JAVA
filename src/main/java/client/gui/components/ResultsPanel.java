@@ -159,17 +159,17 @@ public class ResultsPanel extends JPanel {
 
 
     private void adjustColumnWidthsToHeader() {
-    JTableHeader tableHeader = resultsTable.getTableHeader();
-    TableColumnModel columnModel = resultsTable.getColumnModel();
-    FontMetrics headerFontMetrics = tableHeader.getFontMetrics(tableHeader.getFont());
+        JTableHeader tableHeader = resultsTable.getTableHeader();
+        TableColumnModel columnModel = resultsTable.getColumnModel();
+        FontMetrics headerFontMetrics = tableHeader.getFontMetrics(tableHeader.getFont());
 
-    for (int col = 0; col < resultsTable.getColumnCount(); col++) {
-        TableColumn column = columnModel.getColumn(col);
-        String headerValue = resultsTable.getColumnName(col);
-        int headerWidth = headerFontMetrics.stringWidth(headerValue) + 24; // 24px for padding
-        column.setPreferredWidth(headerWidth);
+        for (int col = 0; col < resultsTable.getColumnCount(); col++) {
+            TableColumn column = columnModel.getColumn(col);
+            String headerValue = resultsTable.getColumnName(col);
+            int headerWidth = headerFontMetrics.stringWidth(headerValue) + 24; // 24px for padding
+            column.setPreferredWidth(headerWidth);
+        }
     }
-}
 
 
 }

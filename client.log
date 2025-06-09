@@ -1,0 +1,58 @@
+[2025-05-26 00:06:23] INFO: Starting the Analysis Client...
+[2025-05-26 00:06:23] INFO: Attempting connection to port 1099 (attempt 1)
+[2025-05-26 00:06:23] INFO: Connected to RMI server on port 1099
+[2025-05-26 00:06:44] INFO: Loading CSV file: C:\Users\Dell\Downloads\sample_data.csv
+[2025-05-26 00:06:52] INFO: Sending CSV data to server for analysis
+[2025-05-26 00:06:52] INFO: Recieved results from server. Displaying results in ResultsPanel
+[2025-05-26 00:07:31] INFO: User selected chart type: Scatter Plot
+[2025-05-26 00:08:00] INFO: Exiting the application.
+[2025-05-26 07:13:10] INFO: Starting the Analysis Client...
+[2025-05-26 07:13:10] INFO: Attempting connection to port 1099 (attempt 1)
+[2025-05-26 07:13:11] INFO: Attempting connection to port 1099 (attempt 2)
+[2025-05-26 07:13:12] INFO: Attempting connection to port 1099 (attempt 3)
+[2025-05-26 07:13:12] INFO: Failed to connect to RMI server after 3 attempts.
+[2025-05-26 07:14:21] INFO: Starting the Analysis Client...
+[2025-05-26 07:14:21] INFO: Attempting connection to port 1099 (attempt 1)
+[2025-05-26 07:14:22] INFO: Connected to RMI server on port 1099
+[2025-05-26 07:58:25] INFO: Loading CSV file: C:\Users\Dell\Downloads\Students_Grading_Dataset.csv
+[2025-05-26 07:59:39] INFO: Exiting the application.
+[2025-05-26 08:26:36] INFO: Starting the Analysis Client...
+[2025-05-26 08:26:36] INFO: Attempting connection to port 1099 (attempt 1)
+[2025-05-26 08:26:37] INFO: Connected to RMI server on port 1099
+[2025-05-26 08:26:55] INFO: Loading CSV file: C:\Users\Dell\Downloads\Students_Grading_Dataset.csv
+[2025-05-26 08:27:03] INFO: Sending CSV data to server for analysis
+[2025-05-26 08:27:03] INFO: Recieved results from server. Displaying results in ResultsPanel
+[2025-05-26 08:27:35] INFO: User selected chart type: Pie Chart
+[2025-05-26 08:28:37] INFO: User selected chart type: Bar Chart
+[2025-05-26 08:28:40] INFO: User selected chart type: Bar Chart
+[2025-05-26 08:28:51] INFO: User selected chart type: Bar Chart
+[2025-05-26 08:29:00] INFO: User selected chart type: Stacked Bar Chart
+[2025-05-26 08:29:09] INFO: Exiting the application.
+[2025-05-26 08:29:09] INFO: Shutting down the Analysis Client...
+[2025-06-01 22:04:12] INFO: Starting the Analysis Client...
+[2025-06-01 22:04:12] INFO: Attempting connection to port 1099 (attempt 1)
+[2025-06-01 22:04:12] INFO: Connected to RMI server on port 1099
+[2025-06-01 22:04:37] INFO: Loading CSV file: C:\Users\Dell\Downloads\Students_Grading_Dataset.csv
+[2025-06-01 22:04:45] INFO: Sending CSV data to server for analysis
+[2025-06-01 22:04:46] INFO: Recieved results from server. Displaying results in ResultsPanel
+[2025-06-01 22:05:58] INFO: User selected chart type: Pie Chart
+[2025-06-01 22:06:31] INFO: User selected chart type: Stacked Bar Chart
+[2025-06-01 22:06:57] INFO: User selected chart type: Bar Chart
+[2025-06-01 22:07:01] INFO: User selected chart type: Bar Chart
+[2025-06-01 22:07:06] INFO: User selected chart type: Bar Chart
+[2025-06-01 22:07:32] INFO: User selected chart type: Scatter Plot
+[2025-06-01 22:08:20] INFO: Exiting the application.
+[2025-06-02 07:30:56] INFO: Starting the Analysis Client...
+[2025-06-02 07:30:57] INFO: Attempting connection to port 1099 (attempt 1)
+[2025-06-02 07:30:57] INFO: Connected to RMI server on port 1099
+[2025-06-02 07:31:20] INFO: Loading CSV file: C:\Users\Dell\Downloads\Students_Grading_Dataset.csv
+[2025-06-02 07:31:44] INFO: Sending CSV data to server for analysis
+[2025-06-02 07:31:45] INFO: Recieved results from server. Displaying results in ResultsPanel
+[2025-06-02 07:33:15] INFO: User selected chart type: Pie Chart
+[2025-06-02 07:33:34] INFO: User selected chart type: Bar Chart
+[2025-06-02 07:33:38] INFO: User selected chart type: Bar Chart
+[2025-06-02 07:33:48] INFO: User selected chart type: Stacked Bar Chart
+[2025-06-02 07:34:03] INFO: User selected chart type: Scatter Plot
+[2025-06-02 07:34:16] INFO: User selected chart type: Scatter Plot
+[2025-06-02 07:34:22] INFO: User selected chart type: Scatter Plot
+[2025-06-02 07:35:49] INFO: Exiting the application.

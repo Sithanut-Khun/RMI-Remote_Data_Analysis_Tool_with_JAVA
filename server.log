@@ -1,0 +1,28 @@
+[2025-05-26 00:06:12] INFO: Server bound DataService to registry on port 1099 (localhost)
+[2025-05-26 00:06:12] INFO: Server is running. Press Ctrl+C to stop.
+[2025-05-26 00:06:52] INFO: Received analyze request from client
+[2025-05-26 00:06:52] INFO: Starting CSV analysis...
+[2025-05-26 00:06:52] INFO: Analyzing columns: [Math, Physics, Chemistry, English, History]
+[2025-05-26 00:06:52] INFO: Analysis complete, returning results to client.
+[2025-05-26 07:12:29] SEVERE: Server exception: Connection refused to host: 192.168.1.6; nested exception is: 
+	java.net.ConnectException: Connection refused: connect
+[2025-05-26 07:14:09] INFO: Server bound DataService to registry on port 1099 (localhost)
+[2025-05-26 07:14:09] INFO: Server is running. Press Ctrl+C to stop.
+[2025-05-26 08:26:12] INFO: Server bound DataService to registry on port 1099 (localhost)
+[2025-05-26 08:26:12] INFO: Server is running. Press Ctrl+C to stop.
+[2025-05-26 08:27:03] INFO: Received analyze request from client
+[2025-05-26 08:27:03] INFO: Starting CSV analysis...
+[2025-05-26 08:27:03] INFO: Analyzing columns: [Student_ID, First_Name, Last_Name, Email, Gender, Age, Department, Attendance, Midterm_Score, Final_Score, Assignments_Avg, Quizzes_Avg, Participation_Score, Projects_Score, Total_Score, Grade, Study_Hours_per_Week, Extracurricular_Activities, Internet_Access_at_Home, Parent_Education_Level, Family_Income_Level, Stress_Level 110, Sleep_Hours_per_Night]
+[2025-05-26 08:27:03] INFO: Analysis complete, returning results to client.
+[2025-06-01 22:03:44] INFO: Server bound DataService to registry on port 1099 (localhost)
+[2025-06-01 22:03:44] INFO: Server is running. Press Ctrl+C to stop.
+[2025-06-01 22:04:45] INFO: Received analyze request from client
+[2025-06-01 22:04:45] INFO: Starting CSV analysis...
+[2025-06-01 22:04:45] INFO: Analyzing columns: [Student_ID, First_Name, Last_Name, Email, Gender, Age, Department, Attendance, Midterm_Score, Final_Score, Assignments_Avg, Quizzes_Avg, Participation_Score, Projects_Score, Total_Score, Grade, Study_Hours_per_Week, Extracurricular_Activities, Internet_Access_at_Home, Parent_Education_Level, Family_Income_Level, Stress_Level 110, Sleep_Hours_per_Night]
+[2025-06-01 22:04:46] INFO: Analysis complete, returning results to client.
+[2025-06-02 07:30:25] INFO: Server bound DataService to registry on port 1099 (localhost)
+[2025-06-02 07:30:25] INFO: Server is running. Press Ctrl+C to stop.
+[2025-06-02 07:31:44] INFO: Received analyze request from client
+[2025-06-02 07:31:44] INFO: Starting CSV analysis...
+[2025-06-02 07:31:44] INFO: Analyzing columns: [Student_ID, First_Name, Last_Name, Email, Gender, Age, Department, Attendance, Midterm_Score, Final_Score, Assignments_Avg, Quizzes_Avg, Participation_Score, Projects_Score, Total_Score, Grade, Study_Hours_per_Week, Extracurricular_Activities, Internet_Access_at_Home, Parent_Education_Level, Family_Income_Level, Stress_Level 110, Sleep_Hours_per_Night]
+[2025-06-02 07:31:45] INFO: Analysis complete, returning results to client.

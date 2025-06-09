@@ -22,12 +22,12 @@ public class AnalysisClientGUI extends JFrame {
     private static final Logger logger = Logger.getLogger(AnalysisClientGUI.class.getName());
 
     public AnalysisClientGUI() {
-        initializeRMI(); // Make sure to call this to establish the connection
+        initializeRMI(); 
         setupUI();
     }
 
     private void initializeRMI() {
-    final String host = "127.0.0.1"; // Force loopback
+    final String host = "127.0.0.1"; 
     final int port = 1099;
     final int retryDelay = 1000;
     final int maxAttempts = 3;
@@ -67,7 +67,7 @@ public class AnalysisClientGUI extends JFrame {
 private void setupUI() {
     setTitle("Remote Data Analysis Tool");
     setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-    setSize(1000, 800);  // Increased height for better default visibility
+    setSize(1000, 800);  
     setLocationRelativeTo(null);
 
     // Main container with BoxLayout to allow vertical stacking
